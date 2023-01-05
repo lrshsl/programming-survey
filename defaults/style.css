@@ -1,0 +1,76 @@
+/**
+ * Copyright 2022 lars.
+ * Use of this source code is governed by the WTFPL
+ * license that can be found in the LICENSE file.
+ */
+
+@font-face {
+    font-family: HackedCRT;
+    src: url(../resources/fonts/Hacked\ CRT.woff2);
+}
+
+@font-face {
+    font-family: Code;
+    src: url(../resources/fonts/Code.woff2);
+}
+
+@font-face {
+    font-family: GistLight;
+    src: url(../resources/fonts/GistLight.woff2);
+}
+
+:root {
+    color-scheme: dark light;
+    color: #00aa00;
+    font-family: Code;
+    margin: 2% 5%;
+    padding: 1% 2%;
+}
+
+html {
+    background-color: #121212;
+}
+
+h1 {
+    text-align: center;
+    font-size: 250%;
+    color: #00ff00;
+    background-color: black;
+    font-weight: lighter;
+    padding: 1.5%;
+    border-radius: 20px;
+}
+
+h2 {
+    background-color: #0f0f0f;
+    text-align: center;
+    color: #00ff00
+}
+
+p {
+    text-align: center;
+    color: #3de63d;
+    box-shadow: 0;
+}
+
+button {
+    background-color: #003311;
+    color: #ccffcc;
+    border-radius: 20px;
+    box-shadow: 10px 10px 8px #000000;
+    padding: 10px 30px 10px 30px;
+    margin-top: 4%;
+}
+
+button:hover {
+    background-color: #002811;
+}
+
+a {
+    color: rgb(179, 125, 18);
+}
+
+footer {
+    position: absolute;
+    bottom: 0px;
+}

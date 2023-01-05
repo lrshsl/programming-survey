@@ -1,0 +1,79 @@
+
+@font-face {
+    font-family: HackedCRT;
+    src: url(../resources/fonts/Hacked\ CRT.woff2);
+}
+
+@font-face {
+    font-family: Code;
+    src: url(../resources/fonts/Code.woff2);
+}
+
+@font-face {
+    font-family: GistLight;
+    src: url(../resources/fonts/GistLight.woff2);
+}
+
+:root {
+    color-scheme: dark light;
+    color: #00aa00;
+    font-family: Code;
+    margin: 2% 5%;
+    padding: 1% 2%;
+    background-color: blue;
+}
+
+html {
+    background-color: #12f212;
+}
+
+h1 {
+    text-align: center;
+    font-size: 100%;
+    color: #00ff00;
+    background-color: black;
+    font-weight: lighter;
+    padding: 1.5%;
+    border-radius: 20px;
+}
+
+h2 {
+    background-color: #0f0f0f;
+    text-align: center;
+    color: #00ff00
+}
+
+p {
+    text-align: center;
+    color: #3de63d;
+    box-shadow: 0;
+}
+
+button {
+    border-radius: 20px;
+    background-color: #003311;
+    box-shadow: 10px 10px 8px #000000;
+    color: #ccffcc;
+    padding: 10px 30px 10px 30px;
+    margin-left: 5%;
+}
+
+button:hover {
+    background-color: #002811;
+}
+
+input {
+    background-color: #232323;
+    color: white;
+    border-style: none;
+    border-radius: 20px;
+    position: static;
+}
+
+.input_label {
+    width: 20%;
+}
+
+a {
+    color: rgb(179, 125, 18);
+}
