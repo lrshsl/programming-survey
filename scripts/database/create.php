@@ -3,8 +3,8 @@
 // Use of this source code is governed by the WTFPL
 // license that can be found in the LICENSE file.
 
-$root = $_SERVER["DOCUMENT_ROOT"];
-include $root."/scripts/database/project_specific.php";
+$root = $_SERVER["DOCUMENT_ROOT"]."/lrs/programming_survey/";
+include $root."scripts/database/project_specific.php";
 
 $CSV_FILE_PATH = "questions.csv";
 

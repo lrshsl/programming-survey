@@ -5,14 +5,17 @@
 //  license that can be found in the LICENSE file.
 
 
-// Start the session
+// First start the question
 session_start();
 
+// Make imports from the project root possible
+$root = $_SERVER["DOCUMENT_ROOT"]."/lrs/programming_survey/";
+
 // Import basic functionality
-require "../../defaults/basic.php";
+require $root."defaults/errors.php";
 
 // Create the database if it doesn't yet exist
-require "database/create.php";
+require $root."scripts/database/create.php";
 
 
 handle_login_submission();
@@ -27,6 +30,8 @@ function handle_login_submission() {
     // Make sure there is not already a user with that username in the database
     $db = Database::get_instance();
     if ($db->is_in_table("users", "username", $username)) {
+
+        // TODO: Sign in if password is correct
 
         // If it is, redirect back to the login form..
         header("Location: ../../templates/login_form.html");

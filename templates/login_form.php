@@ -6,8 +6,13 @@
 
 <?php
 
+// Include error tools
+$root = $_SERVER["DOCUMENT_ROOT"]."/lrs/programming_survey/";
+include $root."defaults/errors.php";
+
 // Redirect to index page if already logged in
 if (isset($_SESSION["username"])) {
+    add_message("You're already logged in");
     header("Location: ../index.html");
     exit();
 }

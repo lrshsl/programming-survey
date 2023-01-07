@@ -163,6 +163,21 @@ class Database {
         // Return the rows
         return $rows;
     }
+
+    function get_elements_where($table, $col, $condition) {
+        // Prepare SELECT statement
+        $cmd = "SELECT ".$col." FROM ".$table."WHERE ".$condition.";";
+        $stmt = $this->connection->prepare($cmd);
+        
+        // Execute it
+        $stmt->execute();
+
+        // Fetch the rows
+        $rows = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+        // Return the rows
+        return $rows;
+    }
 }
 
 ?>

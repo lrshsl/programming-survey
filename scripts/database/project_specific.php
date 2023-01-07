@@ -4,9 +4,9 @@
 // license that can be found in the LICENSE file.
 
 
-$root = $_SERVER["DOCUMENT_ROOT"];
-require $root."/scripts/database/database.php";
-require $root."/scripts/database/create_table_commands.php";
+$root = $_SERVER["DOCUMENT_ROOT"]."/lrs/programming_survey/";
+require $root."scripts/database/database.php";
+require $root."scripts/database/create_table_commands.php";
 
 
 function prepare_tables($db) {

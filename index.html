@@ -5,22 +5,14 @@
 -->
 
 
-<!DOCTYPE html>
+<!-- Import defaults -->
+<link rel="stylesheet" href="defaults/style.css">
 <html lang="en">
 <head>
-    <?php
-    // Start the session
-    session_start();
-
-    // Import some commands (and adds an event-listener)
-    $root = $_SERVER["DOCUMENT_ROOT"];
-    include $root."/scripts/quiz.php";
-    ?>
-
-    <!-- Import defaults -->
-    <link rel="stylesheet" href="defaults/style.css">
     <link rel="import" href="defaults/head_content.html">
+    <title>Programming Survey</title>
 </head>
+
 
 <body>
     <link rel="import" href="defaults/header.html">
@@ -29,10 +21,14 @@
         <!-- <a href="templates/login_form.html">
             <button class="centered">Sign In</button>
         </a> -->
+
+        <form action="templates/survey.php" method="post">
+            <input type="submit" value="Start Survey">
+        </form>
+
         <br> <br> <br> <br> <br> <br> <br>
 
-        <button id="start_survey_btn">Start Survey</button>
-        <form action="scripts/start_survey.php" method="post">
+        <form action="templates/login_form.php" method="post">
             <input type="submit" value="Log In">
         </form>
 
@@ -44,4 +40,6 @@
     </main>
     <link rel="import" href="defaults/footer.html">
 </body>
+
+<!-- This tag is opened in the 'head.html' file, that is imported -->
 </html>
