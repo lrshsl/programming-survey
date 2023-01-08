@@ -44,7 +44,7 @@ function add_user($db, $username, $age) {
     // Double check that the username is unique
     if ($db->is_in_table("users", "username", $username)) {
         add_message("[Shouldn't get called]User ".$username." is already in the database");
-        return;
+        return false;
     }
 
     // Strings must be enclosed in double quotes

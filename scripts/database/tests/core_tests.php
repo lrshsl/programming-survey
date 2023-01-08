@@ -81,10 +81,56 @@ $core_tests = [
 
     // Test that checks the insert and select functions
     function($db) {
+        $inserted_users = [
+            "lrshsl" => 99,
+            "some" => 1,
+            "none" => 15,
+            "anon" => 80,
+            "anonymous" => 06,
+        ];
+        $not_inserted_usernames = [
+            "lrshpl",
+            "filipp",
+            "qresnt",
+            "nonon",
+            "anonymuus",
+        ];
+        $not_inserted_ages = [
+            12, 34, 32, 98, 89, 70, 50, 04,
+        ];
 
         // First reset the database
         prepare_tables($db, true);
+        
+        // Database should now be empty if test#2(1 based system) worked
+        // So insert all users in the array '$inserted_users'
+        foreach ($inserted_users as $name => $age) {
+            add_user($db, $name, $age);
+        }
 
+        // Now check if they are in there
+        foreach ($inserted_users as $name => $age) {
+            if (!$db->is_in_table("users", "username", $name)
+                || !$db->is_in_table("users", "age", $age)) {
+                    return "Failed: ".$name.", ".$age."years was not found after insertion of these values";
+                }
+        }
+
+        // Check some random other names which aren't in the database
+        foreach ($not_inserted_usernames as $name) {
+            if ($db->is_in_table("users", "username", $name)) {
+                return "Failed: ".$name." was found but not inserted";
+            }
+        }
+
+        // Same with ages
+        foreach ($not_inserted_ages as $age) {
+            if ($db->is_in_table("users", "age", $age)) {
+                return "Failed: ".$age." was found but not inserted";
+            }
+        }
+
+        // If that all didn't fail, it's a success!
         return "Success";
     }
 ]
