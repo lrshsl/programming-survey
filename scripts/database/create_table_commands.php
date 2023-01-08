@@ -3,6 +3,13 @@
 // Use of this source code is governed by the WTFPL
 // license that can be found in the LICENSE file.
 
+
+// Names of the tables (don't forget to UPDATE!)
+$table_names = [
+    "users", "correct_answers", "questions", "user_answers"
+];
+
+// Commands used to create the tables and the connections (foreign keys)
 $create_table_commands = [
     "users" => "CREATE TABLE IF NOT EXISTS users(
         user_id             INT NOT NULL AUTO_INCREMENT,

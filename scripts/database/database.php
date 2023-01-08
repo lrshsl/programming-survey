@@ -10,6 +10,7 @@
 //   - Store authenthification data separately
 //   - Separate the singleton functions
 
+
 class Database {
     const DEFAULT_SERVER = "localhost";
     const DEFAULT_DATABASE = "programming_survey_db";
@@ -29,7 +30,7 @@ class Database {
     static function get_instance() {
         
         // If there is already an instance of this class, return it
-        if (isset(self::$instance))
+        if (isset(self::$instance) and self::$instance != null)
             return self::$instance;
 
         // Else call the constructor with the default login information..
@@ -44,7 +45,7 @@ class Database {
     static function get_testing_instance() {
         
         // If there is already a testing instance of this class, return it
-        if (isset(self::$testing_instance))
+        if (isset(self::$testing_instance) and self::$testing_instance != null)
             return self::$testing_instance;
 
         // Else call the constructor with the testing login information..
@@ -56,9 +57,12 @@ class Database {
         return $db;
     }
 
-    function __construct($servername, $db_name, $username, $password) {
+    function __construct($servername, $db_name, $username, $password, $testing) {
         // Renew the 'instance' attribute for the singleton usage of this class
-        $this::$instance = $this;
+        if ($testing)
+            $this::$testing_instance = $this;
+        else
+            $this::$instance = $this;
 
         // Connect to the database
         $this->connection = Database::get_new_connection(
@@ -116,7 +120,8 @@ class Database {
 
     function disconnect() {
         $this->connection = null;
-        $this->intsance = null;
+        $this->instance = null;
+        $this->testing_instance = null;
         $this->running = false;
     }
 
@@ -176,7 +181,7 @@ class Database {
         return $found;
     }
 
-    function get_elements($table, $col) {
+    function get_elements($table, $col = "*") {
         // Prepare SELECT statement
         $cmd = "SELECT ".$col." FROM ".$table.";";
         $stmt = $this->connection->prepare($cmd);
