@@ -16,7 +16,9 @@ function prepare_tables($db, $reset = false) {
     // Since we won't need any foreign key checks, which would
     // stop the drop process if the tables aren't dropped in the right
     // order, those checks are temporarily disabled
-    $db->execute("SET FOREIGN_KEY_CHECKS = 0");
+    if ($reset) {
+        $db->execute("SET FOREIGN_KEY_CHECKS = 0;");
+    }
 
     // Iterate through the table names and
     // the according creation commands
@@ -32,7 +34,9 @@ function prepare_tables($db, $reset = false) {
     }
 
     // Turn foreign key checks back on
-    $db->execute("SET FOREIGN_KEY_CHECKS = 1");
+    if ($reset) {
+        $db->execute("SET FOREIGN_KEY_CHECKS = 1;");
+    }
 }
 
 function add_user($db, $username, $age) {

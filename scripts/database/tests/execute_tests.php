@@ -4,6 +4,7 @@
 // Use of this source code is governed by the WTFPL
 // license that can be found in the LICENSE file.
 
+
 // Include test files (some can be missing)
 include "core_tests.php";
 include "expensive_tests.php";
@@ -30,7 +31,7 @@ execute_tests($all_tests);
 function execute_tests($tests) {
 
     // Keep impatient users patient
-    echo "Tests are running!<br>Please be patient<br><br>";
+    echo "<h4>Tests are running!<br>Please be patient</h4><br>";
 
     // Get a singleton of the database class
     $db = Database::get_testing_instance();

@@ -6,15 +6,12 @@
 $root = $_SERVER["DOCUMENT_ROOT"]."/lrs/programming_survey/";
 include $root."scripts/database/project_specific.php";
 
-$CSV_FILE_PATH = "questions.csv";
-
 
 // If there is already a connection running, nothing has to be done
-if (Database::$running)
+if (isset($db->instance) && $db->instance)
     exit();
 
-
-// Else get a database instance
+// Else get a database singleton of the class Database
 $db = Database::get_instance();
 
 // Make sure the instance could successfully connect to its database
@@ -23,6 +20,7 @@ if ($db->connection == null) {
     exit();
 }
 
+// Create the tables if they don't exist yet
 prepare_tables($db);
 
 ?>

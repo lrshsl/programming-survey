@@ -21,16 +21,15 @@ class Database {
     const TESTING_USERNAME = "root";
     const TESTING_PASSWORD = "";
 
-    protected static $instance;
-    protected static $testing_instance;
+    public static $instance;
+    public static $testing_instance;
     public $connection;
-    public static $running = false;
 
     static function get_instance() {
         
         // If there is already an instance of this class, return it
-        if (isset(self::$instance) && self::instance != null)
-            return self::$instance;
+        if (isset(Database::$instance) && Database::instance != null)
+            return Database::$instance;
 
         // Else call the constructor with the default login information..
         $db =  new Database(
@@ -44,19 +43,20 @@ class Database {
     static function get_testing_instance() {
         
         // If there is already a testing instance of this class, return it
-        if (isset(self::$testing_instance) && self::testing_instance != null)
-            return self::$testing_instance;
-
+        if (isset(Database::$testing_instance) && Database::$testing_instance != null) {
+            return Database::$testing_instance;
+        }
+        
         // Else call the constructor with the testing login information..
         $db =  new Database(
             Database::TESTING_SERVER, Database::TESTING_DATABASE,
             Database::TESTING_USERNAME, Database::TESTING_PASSWORD, true);
-
+            
         // .. and return that
         return $db;
     }
 
-    function __construct($servername, $db_name, $username, $password, $testing = false) {
+    private function __construct($servername, $db_name, $username, $password, $testing = false) {
         // Renew the 'instance' attribute for the singleton usage of this class
         if ($testing) {
             $this::$testing_instance = $this;
@@ -67,12 +67,9 @@ class Database {
         // Connect to the database
         $this->connection = Database::get_new_connection(
             $servername, $db_name, $username, $password);
-            
-        // If this executed so far, it must be running I guess
-        $this::$running = true;
     }
 
-    private function get_new_connection($servername, $db_name, $username, $password) {
+    function get_new_connection($servername, $db_name, $username, $password) {
         // Connect to a database, should only be called in the constructor
 
         try {
@@ -92,7 +89,14 @@ class Database {
         return $conn;
     }
 
+    function disconnect() {
+        $this->connection = null;
+        $this->instance = null;
+        $this->testing_instance = null;
+    }
+
     protected function execute_or_print_message($cmd, $msg) {
+        // Only internaly used
 
         // Try to execute the command $cmd
         try {
@@ -116,13 +120,6 @@ class Database {
 
         // return true if the execution was successful
         return true;
-    }
-
-    function disconnect() {
-        $this->connection = null;
-        $this->instance = null;
-        $this->testing_instance = null;
-        $this->running = false;
     }
 
     function execute($cmd) {
