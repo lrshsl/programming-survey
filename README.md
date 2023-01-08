@@ -15,7 +15,7 @@ A simple database for a school project
   - [X] Separate db file which provides nice interface
 
   - [X] Tests setup
-  - [ ] Write tests
+  - [X] Write tests
 
   - [ ] Frontend
   - [ ] Website with insert methods
