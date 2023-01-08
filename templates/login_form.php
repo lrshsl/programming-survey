@@ -36,11 +36,8 @@ if (isset($_SESSION["username"])) {
                 <label class="input_label" for="age">Age:</label>
                 <input type="text" name="age" id="age_input"><br><br>
             </div>
-            <button type="submit">Log in</button>
+            <input type="submit" value="Log In">
         </form>
-        <div>
-            <div id="no_input_msg" class="message">This is a message</div>
-        </div>
     </main>
     <link rel="import" href="../defaults/footer.html">
 </body>

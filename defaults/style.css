@@ -53,7 +53,7 @@ p {
     box-shadow: 0;
 }
 
-button {
+input[type="submit"] {
     background-color: #003311;
     color: #ccffcc;
     border-radius: 20px;
@@ -62,7 +62,7 @@ button {
     margin-top: 4%;
 }
 
-button:hover {
+input[type="submit"]:hover {
     background-color: #002811;
 }
 
