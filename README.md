@@ -1,7 +1,7 @@
 # programming-survey
 A simple database for a school project
 
-> This branch is the first part of the project. It contains the database files, isolated, and some tests for them. It is not meant to be merged to the main ever again, but the 
+> This branch is the first part of the project. It contains the database files, isolated, and some tests for them. It is not meant to be merged to the main ever again, but the content of the /scripts/database/ directory should be quite the same as in the main branch.
 
 ## Objectives
 
