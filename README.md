@@ -1,7 +1,7 @@
 # programming-survey
 A simple database for a school project
 
-> This branch is the first part of the project. It contains the database files, isolated, and some tests for them. 
+> This branch is the first part of the project. It contains the database files, isolated, and some tests for them. It is not meant to be merged to the main ever again, but the 
 
 ## Objectives
 
@@ -17,4 +17,6 @@ A simple database for a school project
   - [X] Tests setup
   - [ ] Write tests
 
-  - [ ] Frontend: Website with insert methods
+  - [ ] Frontend
+  - [ ] Website with insert methods
+  - [ ] Log in (almost working on dev)
