@@ -1,9 +1,8 @@
+<?php
+
 // Copyright 2023 lrshsl.
 // Use of this source code is governed by the WTFPL
 // license that can be found in the LICENSE file.
-
-
-<?php
 
 // Include test files (some can be missing)
 include "core_tests.php";
@@ -31,7 +30,7 @@ execute_tests($all_tests);
 function execute_tests($tests) {
 
     // Keep impatient users patient
-    echo "Tests are runninp<br>Please be patient<br><br>";
+    echo "Tests are running!<br>Please be patient<br><br>";
 
     // Get a singleton of the database class
     $db = Database::get_testing_instance();
@@ -40,13 +39,13 @@ function execute_tests($tests) {
     for ($i=0; $i<count($tests); $i++) {
         
         // Echo first part of message
-        echo "Test ".$i." running: ";
+        echo "Test ".($i+1)." running: ";
 
         // Run the test on the database
         $result = $tests[$i]($db);
         
         // Echo the second part of the message
-        echo $result."!<br>";
+        echo "result: ".$result."<br>";
 
     }
     

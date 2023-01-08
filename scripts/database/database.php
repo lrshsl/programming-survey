@@ -29,7 +29,7 @@ class Database {
     static function get_instance() {
         
         // If there is already an instance of this class, return it
-        if (isset(self::$instance))
+        if (isset(self::$instance) && self::instance != null)
             return self::$instance;
 
         // Else call the constructor with the default login information..
@@ -44,26 +44,30 @@ class Database {
     static function get_testing_instance() {
         
         // If there is already a testing instance of this class, return it
-        if (isset(self::$testing_instance))
+        if (isset(self::$testing_instance) && self::testing_instance != null)
             return self::$testing_instance;
 
         // Else call the constructor with the testing login information..
         $db =  new Database(
             Database::TESTING_SERVER, Database::TESTING_DATABASE,
-            Database::TESTING_USERNAME, Database::TESTING_PASSWORD);
+            Database::TESTING_USERNAME, Database::TESTING_PASSWORD, true);
 
         // .. and return that
         return $db;
     }
 
-    function __construct($servername, $db_name, $username, $password) {
+    function __construct($servername, $db_name, $username, $password, $testing = false) {
         // Renew the 'instance' attribute for the singleton usage of this class
-        $this::$instance = $this;
+        if ($testing) {
+            $this::$testing_instance = $this;
+        } else {
+            $this::$instance = $this;
+        }
 
         // Connect to the database
         $this->connection = Database::get_new_connection(
             $servername, $db_name, $username, $password);
-
+            
         // If this executed so far, it must be running I guess
         $this::$running = true;
     }
@@ -74,10 +78,10 @@ class Database {
         try {
             // Try to connect to the database
             $conn = new PDO("mysql:host=$servername;dbname=$db_name", $username, $password);
-
+            
             // Show errors
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+            
         } catch (PDOExeption $e) {
 
             // Print error on failure
@@ -116,7 +120,8 @@ class Database {
 
     function disconnect() {
         $this->connection = null;
-        $this->intsance = null;
+        $this->instance = null;
+        $this->testing_instance = null;
         $this->running = false;
     }
 
