@@ -12,6 +12,12 @@ require $root."scripts/database/create_table_commands.php";
 function prepare_tables($db, $reset = false) {
     global $create_table_commands;
 
+    // If reset is set to true, all tables have to be dropped.
+    // Since we won't need any foreign key checks, which would
+    // stop the drop process if the tables aren't dropped in the right
+    // order, those checks are temporarily disabled
+    $db->execute("SET FOREIGN_KEY_CHECKS = 0");
+
     // Iterate through the table names and
     // the according creation commands
     foreach ($create_table_commands as $table_name => $cmd) {
@@ -24,6 +30,9 @@ function prepare_tables($db, $reset = false) {
         $db->execute($cmd);
 
     }
+
+    // Turn foreign key checks back on
+    $db->execute("SET FOREIGN_KEY_CHECKS = 1");
 }
 
 function add_user($db, $username, $age) {
