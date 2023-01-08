@@ -48,47 +48,48 @@ $create_table_commands = [
         ADD FOREIGN KEY (user_id) REFERENCES users (user_id);"
 ];
 
-$create_table_commands = [
-    "users" => "CREATE TABLE IF NOT EXISTS users(
-        user_id             INT NOT NULL AUTO_INCREMENT,
-        username            VARCHAR(20) NOT NULL UNIQUE,
-        age                 INT,
-        PRIMARY KEY         (user_id)
-    );",
+// This is an alternative version, suitable for multiple choice questions
+// $create_table_commands = [
+//     "users" => "CREATE TABLE IF NOT EXISTS users(
+//         user_id             INT NOT NULL AUTO_INCREMENT,
+//         username            VARCHAR(20) NOT NULL UNIQUE,
+//         age                 INT,
+//         PRIMARY KEY         (user_id)
+//     );",
 
-    "questions" => "CREATE TABLE IF NOT EXISTS questions(
-        question_id         INT NOT NULL AUTO_INCREMENT,
-        text                VARCHAR(128) NOT NULL UNIQUE,
+//     "questions" => "CREATE TABLE IF NOT EXISTS questions(
+//         question_id         INT NOT NULL AUTO_INCREMENT,
+//         text                VARCHAR(128) NOT NULL UNIQUE,
 
-        PRIMARY KEY         (question_id)
-    );",
+//         PRIMARY KEY         (question_id)
+//     );",
 
-    "answer_options" => "CREATE TABLE IF NOT EXISTS answer_options(
-        option_id           INT NOT NULL AUTO_INCREMENT,
-        text                VARCHAR(128) NOT NULL,
-        option_index        INT NOT NULL,
-        question_id         INT,
+//     "answer_options" => "CREATE TABLE IF NOT EXISTS answer_options(
+//         option_id           INT NOT NULL AUTO_INCREMENT,
+//         text                VARCHAR(128) NOT NULL,
+//         option_index        INT NOT NULL,
+//         question_id         INT,
 
-        PRIMARY KEY         (option_id)
-    );",
+//         PRIMARY KEY         (option_id)
+//     );",
 
-    "user_answers" => "CREATE TABLE IF NOT EXISTS user_answers(
-        answer_id           INT NOT NULL AUTO_INCREMENT,
-        answer_index        INT,
-        question_id         INT,
-        user_id             INT,
+//     "user_answers" => "CREATE TABLE IF NOT EXISTS user_answers(
+//         answer_id           INT NOT NULL AUTO_INCREMENT,
+//         answer_index        INT,
+//         question_id         INT,
+//         user_id             INT,
 
-        PRIMARY KEY         (answer_id)
-    );",
+//         PRIMARY KEY         (answer_id)
+//     );",
 
-    "foreign_keys" => "ALTER TABLE answer_options
-        ADD FOREIGN KEY (question_id) REFERENCES questions(question_id);
+//     "foreign_keys" => "ALTER TABLE answer_options
+//         ADD FOREIGN KEY (question_id) REFERENCES questions(question_id);
 
-        ALTER TABLE user_answers
-        ADD FOREIGN KEY (question_id) REFERENCES questions(question_id);
+//         ALTER TABLE user_answers
+//         ADD FOREIGN KEY (question_id) REFERENCES questions(question_id);
 
-        ALTER TABLE user_answers
-        ADD FOREIGN KEY (user_id) REFERENCES users (user_id);"
-];
+//         ALTER TABLE user_answers
+//         ADD FOREIGN KEY (user_id) REFERENCES users (user_id);"
+// ];
 
 ?>

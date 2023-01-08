@@ -11,7 +11,7 @@ include $root."scripts/database/project_specific.php";
 if (isset($db->instance) && $db->instance)
     exit();
 
-// Else get a database singleton of the class Database
+// Get a database singleton of the class Database
 $db = Database::get_instance();
 
 // Make sure the instance could successfully connect to its database

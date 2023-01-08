@@ -70,19 +70,23 @@ class Database {
     }
 
     function get_new_connection($servername, $db_name, $username, $password) {
-        // Connect to a database, should only be called in the constructor
+        // Connect to a database
 
         try {
-            // Try to connect to the database
-            $conn = new PDO("mysql:host=$servername;dbname=$db_name", $username, $password);
+            // Try to connect to the server
+            $conn = new PDO("mysql:host=$servername", $username, $password);
             
             // Show errors
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // Create the database if it doesn't already exist
+            $conn->exec("CREATE DATABASE IF NOT EXISTS ".$db_name);
+            $conn->exec("USE ".$db_name);
             
         } catch (PDOExeption $e) {
 
             // Print error on failure
-            echo "[DBError] Could not connect to database: ".$e->getMessage()."<br>";
+            echo "[DBError] Could not connect to nor create database: ".$e->getMessage()."<br>";
         }
 
         // Return the connection
