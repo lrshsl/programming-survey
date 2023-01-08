@@ -4,6 +4,12 @@
 // license that can be found in the LICENSE file.
 
 
+// TODO:
+// Maybe too many responsibilities for one single class:
+//   - Maybe reduce protected functions to a 'core'-class?
+//   - Store authenthification data separately
+//   - Separate the singleton functions
+
 class Database {
     const DEFAULT_SERVER = "localhost";
     const DEFAULT_DATABASE = "programming_survey_db";
@@ -39,12 +45,6 @@ class Database {
 
         // If this executed so far, it must be running I guess
         $this::$running = true;
-    }
-
-    function disconnect() {
-        $this->connection = null;
-        $this->intsance = null;
-        $this->running = false;
     }
 
     private function get_new_connection($servername, $db_name, $username, $password) {
@@ -91,6 +91,12 @@ class Database {
 
         // return true if the execution was successful
         return true;
+    }
+
+    function disconnect() {
+        $this->connection = null;
+        $this->intsance = null;
+        $this->running = false;
     }
 
     function execute($cmd) {

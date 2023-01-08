@@ -1,8 +1,0 @@
-# File read by xampp
-      
-# Display php errors on the website
-php_value error_reporting E_ALL
-php_value display_errors on
-
-# Set include path
-php_value include_path ".:/opt/lampp/htdocs/lrs/programming_survey/scripts/"
