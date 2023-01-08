@@ -16,7 +16,13 @@ class Database {
     const DEFAULT_USERNAME = "root";
     const DEFAULT_PASSWORD = "";
 
+    const TESTING_SERVER = "localhost";
+    const TESTING_DATABASE = "testing_db";
+    const TESTING_USERNAME = "root";
+    const TESTING_PASSWORD = "";
+
     protected static $instance;
+    protected static $testing_instance;
     public $connection;
     public static $running = false;
 
@@ -30,6 +36,21 @@ class Database {
         $db =  new Database(
             Database::DEFAULT_SERVER, Database::DEFAULT_DATABASE,
             Database::DEFAULT_USERNAME, Database::DEFAULT_PASSWORD);
+
+        // .. and return that
+        return $db;
+    }
+
+    static function get_testing_instance() {
+        
+        // If there is already a testing instance of this class, return it
+        if (isset(self::$testing_instance))
+            return self::$testing_instance;
+
+        // Else call the constructor with the testing login information..
+        $db =  new Database(
+            Database::TESTING_SERVER, Database::TESTING_DATABASE,
+            Database::TESTING_USERNAME, Database::TESTING_PASSWORD);
 
         // .. and return that
         return $db;
