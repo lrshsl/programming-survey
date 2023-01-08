@@ -9,7 +9,7 @@ require $root."scripts/database/database.php";
 require $root."scripts/database/create_table_commands.php";
 
 
-function prepare_tables($db, $reset = false) {
+function prepare_tables($db) {
 
     global $create_table_commands;
 
@@ -17,13 +17,12 @@ function prepare_tables($db, $reset = false) {
     // the according creation commands
     foreach ($create_table_commands as $table_name => $cmd) {
         
-        if ($reset) {
-            // Delete table
-            $db->delete_table($table_name);
-        }
+        // Delete table
+        // $db->delete_table($table_name);
 
         // Create the table new
         $db->execute($cmd);
+
     }
 }
 
