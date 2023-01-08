@@ -45,7 +45,7 @@ function execute_tests($tests) {
         $result = $tests[$i]($db);
         
         // Echo the second part of the message
-        echo "result: ".$result."<br>";
+        echo $result."<br>";
 
     }
     

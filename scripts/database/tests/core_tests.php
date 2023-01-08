@@ -16,12 +16,12 @@ $core_tests = [
         if (!isset($db) || $db == null)
             return "Failed: Could not get an instance/singleton";
 
-        if (!isset($db->connection) || $db->testing_instance == null)
+        if (!isset($db->connection) || $db->connection == null)
             return "Failed: Could not connect";
-        
-        if (!isset($db->running) || $db->testing_instance == false)
+
+        if (!isset($db->running) || $db->running == false)
             return "Failed: Database isn't running";
-        
+
         return "Success";
     },
 
